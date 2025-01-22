@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/jacobshu/dex/pokedex"
 )
 
 func main() {
@@ -19,9 +21,14 @@ func main() {
 			}
 			cmd := sanitized[0]
 			cmds := getCommands()
-			err := cmds[cmd].callback()
-			if err != nil {
-				fmt.Print(fmt.Errorf("error in command %s: %w", cmd, err))
+			config := pokedex.Config{}
+			if command, ok := cmds[cmd]; ok {
+				err := command.callback(&config)
+				if err != nil {
+					fmt.Print(fmt.Errorf("error in command %s: %w", cmd, err))
+				}
+			} else {
+				continue
 			}
 		}
 	}
