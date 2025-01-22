@@ -18,11 +18,11 @@ func main() {
 				continue
 			}
 			cmd := sanitized[0]
-			if cmd == "quit" || cmd == "q" {
-				fmt.Print("bye 👋\n")
-				return
+			cmds := getCommands()
+			err := cmds[cmd].callback()
+			if err != nil {
+				fmt.Print(fmt.Errorf("error in command %s: %w", cmd, err))
 			}
-			fmt.Printf("Your command was: %s\n", cmd)
 		}
 	}
 }
