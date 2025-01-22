@@ -6,7 +6,6 @@ import (
 )
 
 func CommandMap(cfg *pokedex.Config) error {
-	fmt.Printf("MAP COMMAND:\nPREV%v, NEXT%v\n", cfg.Previous, cfg.Next)
 	if cfg.Next == "" {
 		pokedex.GetLocations(cfg)
 	} else {

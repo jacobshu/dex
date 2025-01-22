@@ -11,6 +11,7 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
+	config := pokedex.Config{}
 	for {
 		fmt.Print("Pokedex > ")
 		if scanner.Scan() {
@@ -21,7 +22,6 @@ func main() {
 			}
 			cmd := sanitized[0]
 			cmds := getCommands()
-			config := pokedex.Config{}
 			if command, ok := cmds[cmd]; ok {
 				err := command.callback(&config)
 				if err != nil {
