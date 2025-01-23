@@ -1,10 +1,10 @@
-package main
+package cmd
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/jacobshu/dex/pokedex"
+	"github.com/jacobshu/dex/internal/pokedex"
 )
 
 func CommandExit(cfg *pokedex.Config) error {

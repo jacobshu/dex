@@ -6,7 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jacobshu/dex/pokedex"
+	"github.com/jacobshu/dex/internal/cmd"
+	"github.com/jacobshu/dex/internal/pokedex"
 )
 
 func main() {
@@ -20,13 +21,10 @@ func main() {
 			if len(sanitized) == 0 {
 				continue
 			}
-			cmd := sanitized[0]
-			cmds := getCommands()
-			if command, ok := cmds[cmd]; ok {
-				err := command.callback(&config)
-				if err != nil {
-					fmt.Print(fmt.Errorf("error in command %s: %w", cmd, err))
-				}
+			com := sanitized[0]
+			err := cmd.RunCommand(com, &config)
+			if err != nil {
+				fmt.Print(fmt.Errorf("error in command %s: %w", com, err))
 			} else {
 				continue
 			}

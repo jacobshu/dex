@@ -1,8 +1,8 @@
-package main
+package cmd
 
 import (
 	"fmt"
-	"github.com/jacobshu/dex/pokedex"
+	"github.com/jacobshu/dex/internal/pokedex"
 )
 
 func CommandMapb(cfg *pokedex.Config) error {
